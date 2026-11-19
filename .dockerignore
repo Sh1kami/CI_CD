@@ -5,6 +5,7 @@
 **/*.pyc
 evidence
 dist
+reports
 lab03
 lab04
 lab05
