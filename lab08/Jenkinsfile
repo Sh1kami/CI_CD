@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    options { timestamps(); timeout(time: 5, unit: 'MINUTES') }
+    stages {
+        stage('Clone') {
+            steps { git url: 'https://github.com/xvadim/number_facts.git', branch: 'master' }
+        }
+        stage('Last two commits') {
+            steps { sh 'git --no-pager log -2 --date=iso-strict --format="%h | %an | %ad | %s"' }
+        }
+    }
+}

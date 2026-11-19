@@ -1,0 +1,7 @@
+services:
+  app:
+    read_only: true
+    tmpfs: [/tmp]
+  tests:
+    read_only: true
+    tmpfs: [/tmp]

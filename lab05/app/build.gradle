@@ -1,0 +1,15 @@
+plugins { id 'com.android.application' }
+def versionProps = new Properties()
+rootProject.file('version.properties').withInputStream { versionProps.load(it) }
+android {
+    namespace 'ua.edu.kntu.panchyshkin.cicdlab'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'ua.edu.kntu.panchyshkin.cicdlab'
+        minSdk 23
+        targetSdk 35
+        versionCode versionProps['versionCode'].toInteger()
+        versionName versionProps['versionName']
+    }
+    buildTypes { release { minifyEnabled false } }
+}
