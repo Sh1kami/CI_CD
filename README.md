@@ -24,9 +24,6 @@
 | 10 | Dockerfile: багатоетапна збірка та бенчмарк | [PDF](laboratories/Лаб%2010/Звіт.pdf) | [Комплект](laboratories/Лаб%2010) · [Dockerfile](Dockerfile) · [Бенчмарк](scripts/docker_build_benchmark.sh) |
 | 11 | Docker Compose: застосунок, PostgreSQL, Redis, міграція й тести | [PDF](laboratories/Лаб%2011/Звіт.pdf) | [Комплект](laboratories/Лаб%2011) · [Compose](compose.yaml) · [CI-сценарій](scripts/docker_compose_ci_runner.sh) |
 
-У папці лабораторної 7 був файл `cicd_lab6_old.pdf` із завданням про GitLab.
-Роботу 7 виконано за цим файлом для окремого проєкту.
-
 ## Структура репозиторію
 
 - `laboratories/` — повні комплекти робіт 1–11 зі звітами й архівами коду.
