@@ -45,6 +45,9 @@ services:
     build:
       context: .
       target: production
+      args:
+        VCS_REF: ${VCS_REF:-unknown}
+        BUILD_DATE: ${BUILD_DATE:-unknown}
     environment:
       APP_PORT: '3000'
       DATABASE_URL: postgresql://cicd:${DB_PASSWORD}@db:5432/cicd

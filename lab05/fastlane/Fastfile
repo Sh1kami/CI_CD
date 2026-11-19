@@ -1,0 +1,21 @@
+require 'shellwords'
+default_platform(:android)
+platform :android do
+  desc 'Increment Android version code'
+  lane :bump do
+    file = File.expand_path('../version.properties', __dir__)
+    content = File.read(file)
+    old = content.match(/^versionCode=(\d+)$/)[1].to_i
+    File.write(file, content.sub(/^versionCode=\d+$/, "versionCode=#{old + 1}"))
+    UI.success("versionCode #{old} -> #{old + 1}")
+  end
+  desc 'Run the shell script from laboratory 1'
+  lane :greeting do
+    script = File.expand_path('../../lab01/greeting.sh', __dir__)
+    sh("printf 'Богдан\\n20\\n' | sh #{Shellwords.escape(script)}")
+  end
+  desc 'Create an unsigned release APK'
+  lane :release do
+    gradle(task: 'clean assembleRelease', gradle_path: '/opt/gradle/bin/gradle', project_dir: File.expand_path('..', __dir__))
+  end
+end
