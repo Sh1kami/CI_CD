@@ -1,9 +1,51 @@
-# CI/CD інструментарій
+# CI/CD інструментарій — лабораторні роботи 1–11
 
 Автор: Панчишкін Богдан Олександрович, група 3ПРс/3.
 
-Навчальний Python HTTP-сервіс із лічильником PostgreSQL та записом останнього
-значення до Redis. Звіти описують перевірки та фактичні обмеження окремо.
+Репозиторій містить звіти, вихідний код і конфігурації всіх одинадцяти лабораторних.
+Повний комплект опубліковано в гілці **main**.
+
+## Усі лабораторні роботи
+
+У кожній папці є **Звіт.pdf**, редагований **Звіт.md** і **Проєкт_код.zip**.
+Журнали виконання збережено в архівах коду відповідних робіт.
+
+| № | Тема | Звіт | Код та матеріали |
+| --- | --- | --- | --- |
+| 1 | Основи sh і Bash, введення імені та віку | [PDF](laboratories/Лаб%2001/Звіт.pdf) | [Комплект](laboratories/Лаб%2001) · [Код](lab01) |
+| 2 | Масиви Bash, властивості файлів, .env і curl | [PDF](laboratories/Лаб%2002/Звіт.pdf) | [Комплект](laboratories/Лаб%2002) · [Код](lab02) |
+| 3 | Git: гілки, коміти та злиття | [PDF](laboratories/Лаб%2003/Звіт.pdf) | [Комплект](laboratories/Лаб%2003) · [Історія Git](lab03/lab03-history.bundle) |
+| 4 | GitHub: віддалений репозиторій і pull request | [PDF](laboratories/Лаб%2004/Звіт.pdf) | [Комплект](laboratories/Лаб%2004) · [Матеріали](lab04) |
+| 5 | Android і fastlane: версія, shell-сценарій, release | [PDF](laboratories/Лаб%2005/Звіт.pdf) | [Комплект](laboratories/Лаб%2005) · [Код](lab05) · [APK](laboratories/Лаб%2005/app-release-unsigned.apk) |
+| 6 | Встановлення GitLab, clone, commit і push | [PDF](laboratories/Лаб%2006/Звіт.pdf) | [Комплект](laboratories/Лаб%2006) · [Конфігурація](lab06) |
+| 7 | GitLab: окремий проєкт за наданим завданням | [PDF](laboratories/Лаб%2007/Звіт.pdf) | [Комплект](laboratories/Лаб%2007) · [Матеріали](lab07) |
+| 8 | Jenkins: pipeline та два останні коміти | [PDF](laboratories/Лаб%2008/Звіт.pdf) | [Комплект](laboratories/Лаб%2008) · [Jenkinsfile](lab08/Jenkinsfile) |
+| 9 | Docker CLI: контейнери, мережі й томи | [PDF](laboratories/Лаб%2009/Звіт.pdf) | [Комплект](laboratories/Лаб%2009) · [Сценарій](scripts/container_check.sh) |
+| 10 | Dockerfile: багатоетапна збірка та бенчмарк | [PDF](laboratories/Лаб%2010/Звіт.pdf) | [Комплект](laboratories/Лаб%2010) · [Dockerfile](Dockerfile) · [Бенчмарк](scripts/docker_build_benchmark.sh) |
+| 11 | Docker Compose: застосунок, PostgreSQL, Redis, міграція й тести | [PDF](laboratories/Лаб%2011/Звіт.pdf) | [Комплект](laboratories/Лаб%2011) · [Compose](compose.yaml) · [CI-сценарій](scripts/docker_compose_ci_runner.sh) |
+
+У папці лабораторної 7 був файл `cicd_lab6_old.pdf` із завданням про GitLab.
+Роботу 7 виконано за цим файлом для окремого проєкту.
+
+## Структура репозиторію
+
+- `laboratories/` — повні комплекти робіт 1–11 зі звітами й архівами коду.
+- `reports/` — додаткова копія PDF-звітів і текстів Markdown.
+- `lab01/`–`lab08/` — сценарії, конфігурації та матеріали відповідних робіт.
+- `app.py`, `migrate.py`, `requirements.txt`, `tests/` — спільний Python HTTP-сервіс із лічильником PostgreSQL і Redis для контейнерних робіт.
+- `scripts/`, `Dockerfile`, `Dockerfile.single`, `compose*.yaml` — автоматизація робіт 9–11.
+
+## Результати перевірок
+
+- **1–2:** перевірено введення даних, файлові властивості та HTTP-запит через curl.
+- **3:** створено гілку, коміти та злиття; історію збережено в Git bundle.
+- **4:** [PR №1](https://github.com/Sh1kami/CI_CD/pull/1) злито в main за вказівкою власника без очікування зовнішнього review. Схвалення xvadim не отримано; звіт фіксує стан до злиття.
+- **5:** fastlane змінив versionCode з 1 на 2, виконав greeting і зібрав release APK без підпису.
+- **6–7:** створено два приватні GitLab-проєкти; clone, commit і push виконано.
+- **8:** Jenkins завершив збірку №1 зі статусом SUCCESS і вивів два останні коміти.
+- **9:** контейнерна HTTP-перевірка, healthcheck і сім модульних тестів успішні.
+- **10:** обидва варіанти збірки успішні; за вимірюванням у звіті multi — 190,55 MiB, single — 203,53 MiB.
+- **11:** міграція та інтеграційні перевірки HTTP, PostgreSQL і Redis успішні.
 
 ## Локальний запуск
 Python 3.12: `python -m unittest discover -s tests -v`; `python app.py`.
@@ -16,12 +58,33 @@ Python 3.12: `python -m unittest discover -s tests -v`; `python app.py`.
 Скопіювати lab02/.env.example до lab02/.env; запустити сервіс;
 `bash lab02/check_url.sh lab02/.env`.
 
-## Docker
+## Лабораторні 3–8
+
+- **3:** відновити історію — `git clone lab03/lab03-history.bundle restored-lab03`.
+- **4:** поточний комплект доступний у main; історія публікації — у [PR №1](https://github.com/Sh1kami/CI_CD/pull/1).
+- **5:** збірка Android і запуск fastlane описані в [lab05/README.md](lab05/README.md). Готовий APK розміщено в комплекті роботи 5; для встановлення та публікації його потрібно підписати власним ключем.
+- **6:** запуск GitLab — `docker compose -f lab06/compose.yaml up -d`; адреса — <http://localhost:8929>.
+- **7:** пояснення завдання — [lab07/README.md](lab07/README.md); сервер спільний із роботою 6.
+- **8:** збірка та запуск Jenkins описані в [lab08/README.md](lab08/README.md); адреса — <http://localhost:8099>.
+
+GitLab-історії збережено у [bundle роботи 6](lab06/lab06-history.bundle) та [bundle роботи 7](lab07/lab07-history.bundle). Їх можна відновити без сервера командою `git clone шлях-до-файлу.bundle каталог`.
+
+## Лабораторні 9–11 — Docker
 Потрібні Docker Engine із Linux-контейнерами, Compose V2, Bash, Git.
+Команди виконуються з кореня клонованого Git-репозиторію; метадані збірки беруться з поточного коміту.
+
+Робота 9 — контейнерна перевірка:
+
 `bash scripts/container_check.sh`
+
+Робота 10 — порівняння збірок і кешу:
+
 `bash scripts/docker_build_benchmark.sh`
-Для CI: `export DB_PASSWORD=local_lab_password`, потім
+
+Робота 11 — інтеграційний запуск CI: `export DB_PASSWORD=local_lab_password`, потім
+
 `bash scripts/docker_compose_ci_runner.sh`.
+
 Скрипт CI зберігає логи й прибирає лише власний Compose-проєкт та його том.
 Локально: скопіювати .env.example до .env і виконати `docker compose up --build -d`.
 Зупинка локального середовища: `docker compose down`.
