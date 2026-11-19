@@ -1,0 +1,11 @@
+.env
+**/.env
+__pycache__/
+*.pyc
+.gradle/
+**/build/
+evidence/
+dist/
+*.jks
+*.keystore
+local.properties
