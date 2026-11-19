@@ -1,0 +1,15 @@
+.git
+.env
+**/.env
+**/__pycache__
+**/*.pyc
+evidence
+dist
+lab03
+lab04
+lab05
+lab06
+lab07
+lab08
+*.pdf
+*.zip

@@ -1,0 +1,76 @@
+name: panchyshkin-cicd
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: cicd
+      POSTGRES_USER: cicd
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks: [backend]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U cicd -d cicd']
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  cache:
+    image: redis:7-alpine
+    networks: [backend]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  migrate:
+    image: panchyshkin-cicd:lab10
+    build:
+      context: .
+      target: production
+      args:
+        VCS_REF: ${VCS_REF:-unknown}
+        BUILD_DATE: ${BUILD_DATE:-unknown}
+    environment:
+      DATABASE_URL: postgresql://cicd:${DB_PASSWORD}@db:5432/cicd
+    command: [python, migrate.py]
+    healthcheck:
+      disable: true
+    networks: [backend]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: 'no'
+  app:
+    image: panchyshkin-cicd:lab10
+    build:
+      context: .
+      target: production
+    environment:
+      APP_PORT: '3000'
+      DATABASE_URL: postgresql://cicd:${DB_PASSWORD}@db:5432/cicd
+      REDIS_URL: redis://cache:6379/0
+    networks: [frontend, backend]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      cache:
+        condition: service_healthy
+  tests:
+    image: python:3.12-slim
+    profiles: [ci]
+    working_dir: /tests
+    volumes:
+      - ./tests/integration.py:/tests/integration.py:ro
+    command: [python, integration.py]
+    environment:
+      BASE_URL: http://app:3000
+    networks: [frontend]
+    depends_on:
+      app:
+        condition: service_healthy
+networks:
+  frontend: {}
+  backend:
+    internal: true
+volumes:
+  db_data: {}
