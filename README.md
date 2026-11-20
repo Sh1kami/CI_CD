@@ -16,8 +16,8 @@
 | 2 | Масиви Bash, властивості файлів, .env і curl | [PDF](laboratories/Лаб%2002/Звіт.pdf) | [Комплект](laboratories/Лаб%2002) · [Код](lab02) |
 | 3 | Git: гілки, коміти та злиття | [PDF](laboratories/Лаб%2003/Звіт.pdf) | [Комплект](laboratories/Лаб%2003) · [Історія Git](lab03/lab03-history.bundle) |
 | 4 | GitHub: віддалений репозиторій і pull request | [PDF](laboratories/Лаб%2004/Звіт.pdf) | [Комплект](laboratories/Лаб%2004) · [Матеріали](lab04) |
-| 5 | Android і fastlane: версія, shell-сценарій, release | [PDF](laboratories/Лаб%2005/Звіт.pdf) | [Комплект](laboratories/Лаб%2005) · [Код](lab05) · [APK](laboratories/Лаб%2005/app-release-unsigned.apk) |
-| 6 | Встановлення GitLab, clone, commit і push | [PDF](laboratories/Лаб%2006/Звіт.pdf) | [Комплект](laboratories/Лаб%2006) · [Конфігурація](lab06) |
+| 5 | GitHub Actions: інформація про ОС і дата при push | [PDF](laboratories/Лаб%2005/Звіт.pdf) | [Комплект](laboratories/Лаб%2005) · [Робочі процеси](lab05) |
+| 6 | Android і fastlane: версія, shell-сценарій, release | [PDF](laboratories/Лаб%2006/Звіт.pdf) | [Комплект](laboratories/Лаб%2006) · [Код](lab06) · [APK](laboratories/Лаб%2006/app-release-unsigned.apk) |
 | 7 | GitLab: окремий проєкт за наданим завданням | [PDF](laboratories/Лаб%2007/Звіт.pdf) | [Комплект](laboratories/Лаб%2007) · [Матеріали](lab07) |
 | 8 | Jenkins: pipeline та два останні коміти | [PDF](laboratories/Лаб%2008/Звіт.pdf) | [Комплект](laboratories/Лаб%2008) · [Jenkinsfile](lab08/Jenkinsfile) |
 | 9 | Docker CLI: контейнери, мережі й томи | [PDF](laboratories/Лаб%2009/Звіт.pdf) | [Комплект](laboratories/Лаб%2009) · [Сценарій](scripts/container_check.sh) |
@@ -37,8 +37,9 @@
 - **1–2:** перевірено введення даних, файлові властивості та HTTP-запит через curl.
 - **3:** створено гілку, коміти та злиття; історію збережено в Git bundle.
 - **4:** [PR №1](https://github.com/Sh1kami/CI_CD/pull/1) злито в main.
-- **5:** fastlane змінив versionCode з 1 на 2, виконав greeting і зібрав release APK без підпису.
-- **6–7:** створено два приватні GitLab-проєкти; clone, commit і push виконано.
+- **5:** додано два робочі процеси GitHub Actions для ручного запуску та події push.
+- **6:** fastlane змінив versionCode, виконав greeting і зібрав release APK без підпису.
+- **7:** перевірено clone, commit і push до приватного GitLab-проєкту.
 - **8:** Jenkins завершив збірку №1 зі статусом SUCCESS і вивів два останні коміти.
 - **9:** контейнерна HTTP-перевірка, healthcheck і сім модульних тестів успішні.
 - **10:** обидва варіанти збірки успішні; за вимірюванням у звіті multi — 190,55 MiB, single — 203,53 MiB.
@@ -59,12 +60,12 @@ Python 3.12: `python -m unittest discover -s tests -v`; `python app.py`.
 
 - **3:** відновити історію — `git clone lab03/lab03-history.bundle restored-lab03`.
 - **4:** поточний комплект доступний у main; історія публікації — у [PR №1](https://github.com/Sh1kami/CI_CD/pull/1).
-- **5:** збірка Android і запуск fastlane описані в [lab05/README.md](lab05/README.md). Готовий APK розміщено в комплекті роботи 5; для встановлення та публікації його потрібно підписати власним ключем.
-- **6:** запуск GitLab — `docker compose -f lab06/compose.yaml up -d`; адреса — <http://localhost:8929>.
-- **7:** пояснення завдання — [lab07/README.md](lab07/README.md); сервер спільний із роботою 6.
+- **5:** запуск і журнали описано в [lab05/README.md](lab05/README.md).
+- **6:** збірка Android і запуск fastlane описані в [lab06/README.md](lab06/README.md). Готовий APK розміщено в комплекті роботи 6. Для встановлення та публікації його потрібно підписати власним ключем.
+- **7:** конфігурація й запуск GitLab описані в [lab07/README.md](lab07/README.md).
 - **8:** збірка та запуск Jenkins описані в [lab08/README.md](lab08/README.md); адреса — <http://localhost:8099>.
 
-GitLab-історії збережено у [bundle роботи 6](lab06/lab06-history.bundle) та [bundle роботи 7](lab07/lab07-history.bundle). Їх можна відновити без сервера командою `git clone шлях-до-файлу.bundle каталог`.
+Історію роботи 7 збережено у [Git bundle](lab07/lab07-history.bundle). Її можна відновити без сервера командою `git clone шлях-до-файлу.bundle каталог`.
 
 ## Лабораторні 9–11 — Docker
 Потрібні Docker Engine із Linux-контейнерами, Compose V2, Bash, Git.

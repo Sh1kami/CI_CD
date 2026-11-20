@@ -5,8 +5,11 @@ platform :android do
   lane :bump do
     file = File.expand_path('../version.properties', __dir__)
     content = File.read(file)
-    old = content.match(/^versionCode=(\d+)$/)[1].to_i
-    File.write(file, content.sub(/^versionCode=\d+$/, "versionCode=#{old + 1}"))
+    version_line = /^versionCode=(\d+)(?=\r?$)/
+    match = content.match(version_line)
+    UI.user_error!("versionCode is missing from #{file}") unless match
+    old = match[1].to_i
+    File.write(file, content.sub(version_line, "versionCode=#{old + 1}"))
     UI.success("versionCode #{old} -> #{old + 1}")
   end
   desc 'Run the shell script from laboratory 1'

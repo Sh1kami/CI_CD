@@ -1,0 +1,25 @@
+[
+  {
+    "workflow": "lab05-os-info.yml",
+    "event": "workflow_dispatch",
+    "job": "os-info",
+    "conclusion": "success",
+    "runUrl": "https://github.com/Sh1kami/CI_CD/actions/runs/44730976557",
+    "commit": "d845386172e900587276d2ff1eeb05e9caccc8b1",
+    "output": [
+      "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"",
+      "Linux ip-10-0-128-100 7.0.0-1016-aws #17-Ubuntu SMP PREEMPT Mon Oct 19 17:36:33 UTC 2026 x86_64 GNU/Linux"
+    ]
+  },
+  {
+    "workflow": "lab05-system-date.yml",
+    "event": "push",
+    "job": "system-date",
+    "conclusion": "success",
+    "runUrl": "https://github.com/Sh1kami/CI_CD/actions/runs/44730860118",
+    "commit": "d845386172e900587276d2ff1eeb05e9caccc8b1",
+    "output": [
+      "2026-11-20 11:50:37 UTC (+0000)"
+    ]
+  }
+]
