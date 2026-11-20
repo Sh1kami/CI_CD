@@ -1,0 +1,10 @@
+name: "ЛР5 · Системна дата при push"
+on:
+  push:
+permissions: {}
+jobs:
+  system-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Вивести поточну системну дату й час
+        run: date '+%Y-%m-%d %H:%M:%S %Z (%z)'

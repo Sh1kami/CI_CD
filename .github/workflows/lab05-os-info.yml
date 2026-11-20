@@ -1,0 +1,12 @@
+name: "ЛР5 · Інформація про ОС"
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  os-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Вивести інформацію про ОС
+        run: |
+          cat /etc/os-release
+          uname -a
